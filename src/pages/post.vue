@@ -1,0 +1,28 @@
+<template>
+   <Layout>
+     <div >
+       <ul>
+        <li v-for="edge in $page.posts.edges" :key="edge.node.id">
+          <g-link :to="edge.node.path">{{ edge.node.title }}</g-link>
+        </li>
+      </ul>
+     </div>
+   </Layout>
+</template>
+<page-query>
+query{
+  allPost {
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+}
+</page-query>
+<script>
+export default {
+  
+}
+</script>

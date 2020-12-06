@@ -8,16 +8,16 @@ const axios = require('axios')
 
 module.exports = function (api) {
   api.loadSource(async ({ addCollection }) => {
-    const collection = addCollection('Post')
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    // const collection = addCollection('Post')
+    // const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts')
 
-    for (const { id, title, body:content } of  data) {
-      collection.addNode({
-        id,
-        title,
-        content
-      })
-    }
+    // for (const { id, title, body:content } of  data) {
+    //   collection.addNode({
+    //     id,
+    //     title,
+    //     content
+    //   })
+    // }
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   })
 

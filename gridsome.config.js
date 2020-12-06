@@ -12,5 +12,21 @@ module.exports = {
       component: './src/template/post.vue'
     }
   },
-  plugins: []
+  plugins: [
+    {
+      use: '@gridsome/source-strapi',
+      options: {
+        apiURL: 'http://39.108.190.133:1337',
+        queryLimit: 1000, // Defaults to 100
+        contentTypes: ['blog', 'user', 'follower', 'following', 'project'],
+        // singleTypes: ['impressum'],
+        // Possibility to login with a Strapi user,
+        // when content types are not publicly available (optional).
+        loginData: {
+          identifier: 'admin',
+          password: 'czd2436'
+        }
+      }
+    }
+  ]
 }

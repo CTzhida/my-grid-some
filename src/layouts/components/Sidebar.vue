@@ -27,7 +27,7 @@
         </el-alert>
       </div>
     </el-card>
-    <token-dialog ref="tokenDialog"></token-dialog>
+    <!-- <token-dialog ref="tokenDialog"></token-dialog> -->
   </div>
 </template>
 
@@ -41,6 +41,8 @@
     },
     data() {
       return {
+        token: '',
+        mini: false,
         constantRouterMap: [{
           path: '/user/new',
           redirect: '/user/new/main',
@@ -48,23 +50,22 @@
             type: "user",
             icon: 'el-icon-star-off',
             title: '最新动态'
-        },
-        children: [
+          },
+          children: [
             {
                 path: 'main',
                 meta: { title: '最新动态' }
             }
-        ]
-    },
-    {
-        path: '/user/social',
-        redirect: '/user/social/main',
-        meta: {
+          ]
+        }, {
+          path: '/user/social',
+          redirect: '/user/social/main',
+          meta: {
             type: "user",
             icon: 'el-icon-mobile-phone',
             title: '社交圈'
-        },
-        children: [
+          },
+          children: [
             {
                 path: 'main',
                 meta: { title: '社交圈' }
@@ -73,136 +74,125 @@
                 path: 'details/:name',
                 meta: { title: '用户资料' }
             }
-        ]
-    },
-    {
-        path: '/user/blog',
-        redirect: '/user/blog/main',
-        meta: {
+          ]
+        }, {
+          path: '/user/blog',
+          redirect: '/user/blog/main',
+          meta: {
             type: "user",
             icon: 'el-icon-edit-outline',
             title: '博客列表'
-        },
-        children: [
+          },
+          children: [
             {
-                path: 'main',
-                meta: { title: '博客列表' }
+              path: 'main',
+              meta: { title: '博客列表' }
             },
             {
-                path: 'add',
-                meta: { title: '发表博客' }
+              path: 'add',
+              meta: { title: '发表博客' }
             },
             {
-                path: 'edit/:id',
-                meta: { title: '编辑博客' }
+              path: 'edit/:id',
+              meta: { title: '编辑博客' }
             },
             {
-                path: 'details/:id',
-                meta: { title: '博客详情' }
+              path: 'details/:id',
+              meta: { title: '博客详情' }
             }
-        ]
-    },
-    {
-        path: '/user/project',
-        redirect: '/user/project/main',
-        meta: {
+          ]
+        }, {
+          path: '/user/project',
+          redirect: '/user/project/main',
+          meta: {
             type: "user",
             icon: 'el-icon-service',
             title: '开源项目'
-        },
-        children: [
+          },
+          children: [
             {
-                path: 'main',
-                meta: { title: '项目列表' }
+              path: 'main',
+              meta: { title: '项目列表' }
             },
             {
-                path: 'details/:name',
-                meta: { title: '项目详情' }
+              path: 'details/:name',
+              meta: { title: '项目详情' }
             }
-        ]
-    },
-    {
-        path: '/user/helper',
-        redirect: '/user/helper/main',
-        meta: {
+          ]
+        }, {
+          path: '/user/helper',
+          redirect: '/user/helper/main',
+          meta: {
             type: "user",
             icon: 'el-icon-printer',
             title: '使用帮助',
             mini: true
-        },
-        children: [
+          },
+          children: [
             {
-                path: 'main',
-                meta: { title: '使用帮助' }
+              path: 'main',
+              meta: { title: '使用帮助' }
             }
-        ]
-    },
-    {
-        path: '/user/readme',
-        redirect: '/user/readme/main',
-        meta: {
+          ]
+        }, {
+          path: '/user/readme',
+          redirect: '/user/readme/main',
+          meta: {
             type: "user",
             icon: 'el-icon-document',
             title: 'README.md'
-        },
-        children: [
+          },
+          children: [
             {
-                path: 'main',
-                meta: { title: 'README.md' }
+              path: 'main',
+              meta: { title: 'README.md' }
             }
-        ]
-    },
-    {
-        path: '/user/configure',
-        redirect: '/user/configure/main',
-        meta: {
+          ]
+        }, {
+          path: '/user/configure',
+          redirect: '/user/configure/main',
+          meta: {
             type: "user",
             icon: 'el-icon-setting',
             title: '系统配置',
             LoginRequired: true
-        },
-        children: [
+          },
+          children: [
             {
-                path: 'main',
-                meta: { title: '系统配置' }
+              path: 'main',
+              meta: { title: '系统配置' }
             }
-        ]
+          ]
+        }, {
+          path: "/404", 
+        }, {
+          path: '/',
+          redirect: '/user/new',
+        }],
+        active: "",
+        parentUrl: "",
+        menuList: []
+      }
     },
-    {
-        path: "/404",
+    computed: {
+          
     },
-    {
-        path: '/',
-        redirect: '/user/new',
-    }],
-                active: "",
-                parentUrl: "",
-                menuList: []
-            }
-        },
-        computed: {
-            // ...mapGetters([
-            //     'token',
-            //     'githubUsername',
-            //     'mini'
-            // ])
-        },
-        mounted() {
-            let arr = this.$route.path.split("/")
-            this.active = "/" + arr[1] + "/" + arr[2]
-        },
-        methods: {
-            onSelect(index) {
-                this.$router.push(index)
-            },
-            openTokenDialog() {
-                this.$refs.tokenDialog.open(() => {
-           
-                })
-            },
-            cancellation() {
-                this.$store.dispatch("Cancellation")
-            }
-        }
-    }
+    mounted() {
+      let arr = this.$route.path.split("/")
+      this.active = "/" + arr[1] + "/" + arr[2]
+    },
+    methods: {
+      onSelect(index) {
+        this.$router.push(index)
+      },
+      openTokenDialog() {
+        this.$refs.tokenDialog.open(() => {
+          
+        })
+      },
+      cancellation() {
+        this.$store.dispatch("Cancellation")
+      }
+  }
+}
 </script>

@@ -92,7 +92,7 @@
                 </el-col>
                 <el-col :span="18" style="padding-left:10px">
                     <slot />
-                    <app-main></app-main>
+                    <!-- <app-main></app-main> -->
                 </el-col>
             </el-row>
 
@@ -123,7 +123,7 @@ import { randomInt, fullScreen, fullExit, formatTime } from '../utils/util';
                 fontColor: '#ffffff',
                 blogTitle: 'zhida_Chan',
                 blogDescribe: '欢迎来到zhida_Chan的个人博客。',
-                githubUsername: 'GitHub-CTzhida',
+                githubUsername: 'CTzhida',
                 mini: false,
                 audioAutoPlay: false,
                 audioUrl: 'http://sc1.111ttt.cn:8282/2018/1/03m/13/396131232171.m4a?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97#.mp3',
